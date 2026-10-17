@@ -7,10 +7,9 @@ import org.junit.Test;
 public class NginxHealthCheckTest {
 
     @Test
-    public void shouldReturnNullFromCheck() {
+    public void shouldReportUnconfiguredProbeAsUnhealthy() {
         NginxHealthCheck check = new NginxHealthCheck();
-
-        assertNull("NginxHealthCheck is a placeholder; check() must return null", check.execute());
+        assertFalse(check.execute().isHealthy());
     }
 
     @Test
