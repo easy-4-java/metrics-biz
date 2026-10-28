@@ -21,9 +21,8 @@ import com.codahale.metrics.health.HealthCheck;
  * Placeholder {@link HealthCheck} reserved for the future Nginx
  * connectivity probe.
  *
- * <p>The current implementation always returns {@code null}; subclasses
- * or replacement implementations are expected to override
- * {@link #check()} with the real probe logic.</p>
+ * <p>The current implementation reports an unhealthy result until a probe
+ * is configured. Subclasses may override {@link #check()} with real probe logic.</p>
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 3.0.0
@@ -31,15 +30,14 @@ import com.codahale.metrics.health.HealthCheck;
 public class NginxHealthCheck extends HealthCheck {
 
     /**
-     * Currently returns {@code null}; reserved for the future
-     * implementation that will probe Nginx status pages.
+     * Reports that the Nginx probe is not configured.
      *
-     * @return always {@code null} in this placeholder.
+     * @return an unhealthy result explaining the missing probe.
      * @throws Exception reserved for future implementations.
      */
     @Override
     protected Result check() throws Exception {
-        return null;
+        return Result.unhealthy("Nginx health probe is not configured");
     }
 
 }

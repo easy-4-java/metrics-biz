@@ -26,8 +26,8 @@ import com.codahale.metrics.health.HealthCheck;
  * remote IP address using {@link InetAddress#isReachable(int)} and
  * {@link InetAddress#isReachable(NetworkInterface, int, int)}.
  *
- * <p>The current {@link #check()} implementation is a placeholder that
- * returns {@code null}; the actual reachability routine lives in the
+ * <p>The current {@link #check()} implementation reports that no probe is
+ * configured; the actual reachability routine lives in the
  * package-private {@link #isAddressAvailable(String, int)} helper which
  * performs the ICMP/echo probe and iterates over every available
  * network interface.</p>
@@ -39,15 +39,15 @@ import com.codahale.metrics.health.HealthCheck;
 public class ServiceOnlineCheck extends HealthCheck {
 
     /**
-     * Placeholder implementation; reserved for the real probe.
+     * Reports that the service probe is not configured.
      *
-     * @return always {@code null}.
+     * @return an unhealthy result explaining the missing probe.
      * @throws Exception reserved for future implementations.
      */
     @Override
     protected Result check() throws Exception {
 
-        return null;
+        return Result.unhealthy("Service health probe is not configured");
     }
 
     /**

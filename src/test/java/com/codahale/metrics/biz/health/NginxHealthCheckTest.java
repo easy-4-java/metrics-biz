@@ -2,15 +2,18 @@ package com.codahale.metrics.biz.health;
 
 import static org.junit.Assert.*;
 
+import com.codahale.metrics.health.HealthCheck;
 import org.junit.Test;
 
 public class NginxHealthCheckTest {
 
     @Test
-    public void shouldReturnNullFromCheck() {
+    public void shouldReportUnhealthyUntilProbeIsConfigured() {
         NginxHealthCheck check = new NginxHealthCheck();
 
-        assertNull("NginxHealthCheck is a placeholder; check() must return null", check.execute());
+        HealthCheck.Result result = check.execute();
+        assertFalse(result.isHealthy());
+        assertEquals("Nginx health probe is not configured", result.getMessage());
     }
 
     @Test
