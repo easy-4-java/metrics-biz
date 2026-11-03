@@ -21,8 +21,8 @@ import com.codahale.metrics.health.HealthCheck;
  * Placeholder {@link HealthCheck} reserved for the future Tengine
  * connectivity probe.
  *
- * <p>The current implementation always returns {@code null}; subclasses
- * or replacement implementations are expected to override
+ * <p>The current implementation reports an unconfigured probe as unhealthy;
+ * subclasses or replacement implementations can override
  * {@link #check()} with the real probe logic.</p>
  *
  * @author [@Loong Wan](https://github.com/loong10k)
@@ -31,15 +31,14 @@ import com.codahale.metrics.health.HealthCheck;
 public class TengineHealthStatusCheck extends HealthCheck {
 
     /**
-     * Currently returns {@code null}; reserved for the future
-     * implementation that will probe Tengine status pages.
+     * Reports that no Tengine probe has been configured.
      *
-     * @return always {@code null} in this placeholder.
+     * @return an unhealthy result describing the missing probe.
      * @throws Exception reserved for future implementations.
      */
     @Override
     protected Result check() throws Exception {
-        return null;
+        return Result.unhealthy("Tengine probe is not configured");
     }
 
 }
