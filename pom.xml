@@ -299,7 +299,7 @@
         <izettle-metrics-influxdb.version>1.1.8</izettle-metrics-influxdb.version>
         <junit-jupiter.version>5.11.4</junit-jupiter.version>
         <junit.version>4.13.2</junit.version>
-        <kafka-clients.version>3.9.0</kafka-clients.version>
+        <kafka-clients.version>3.9.2</kafka-clients.version>
         <lombok.version>1.18.46</lombok.version>
         <metrics-influxdb.version>0.9.3</metrics-influxdb.version>
         <metrics-kafka.version>0.0.1</metrics-kafka.version>
