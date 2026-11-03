@@ -7,10 +7,9 @@ import org.junit.Test;
 public class ServiceOnlineCheckTest {
 
     @Test
-    public void shouldReturnNullFromCheck() {
+    public void shouldReportUnconfiguredProbeAsUnhealthy() {
         ServiceOnlineCheck check = new ServiceOnlineCheck();
-
-        assertNull("ServiceOnlineCheck is a placeholder; check() must return null", check.execute());
+        assertFalse(check.execute().isHealthy());
     }
 
     @Test
