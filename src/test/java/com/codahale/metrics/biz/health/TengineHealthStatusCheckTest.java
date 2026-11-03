@@ -7,10 +7,9 @@ import org.junit.Test;
 public class TengineHealthStatusCheckTest {
 
     @Test
-    public void shouldReturnNullFromCheck() {
+    public void shouldReportUnconfiguredProbeAsUnhealthy() {
         TengineHealthStatusCheck check = new TengineHealthStatusCheck();
-
-        assertNull("TengineHealthStatusCheck is a placeholder; check() must return null", check.execute());
+        assertFalse(check.execute().isHealthy());
     }
 
     @Test
