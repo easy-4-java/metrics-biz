@@ -34,8 +34,18 @@ jobs:
           java-version: '21'
           cache: maven
 
+      - name: Set up Maven 4.0.0-rc-5
+        run: |
+          curl --fail --location --silent --show-error \
+            https://archive.apache.org/dist/maven/maven-4/4.0.0-rc-5/binaries/apache-maven-4.0.0-rc-5-bin.tar.gz \
+            --output "$RUNNER_TEMP/apache-maven-4.0.0-rc-5-bin.tar.gz"
+          tar -xzf "$RUNNER_TEMP/apache-maven-4.0.0-rc-5-bin.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/apache-maven-4.0.0-rc-5/bin" >> "$GITHUB_PATH"
+
       - name: Build and verify with JaCoCo coverage gate
-        run: mvn -B --no-transfer-progress clean verify
+        run: |
+          mvn --version
+          mvn -B --no-transfer-progress clean verify
 
       - name: Upload JaCoCo coverage report
         if: always()
